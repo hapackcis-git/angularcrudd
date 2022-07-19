@@ -1,0 +1,75 @@
+{
+  "posts": [
+    {
+      "id": 3,
+      "Name": "gfjhf",
+      "amt_of_cars": "787",
+      "total_budget": "676782342",
+      "remaining_budget": "6757657",
+      "owners_first_name": "78687",
+      "owners_last_name": "98789",
+      "longtitude": "9u",
+      "latitude": "98ujoij"
+    },
+    {
+      "id": 4,
+      "Name": "dsfdsf",
+      "amt_of_cars": "3232",
+      "total_budget": "2354354",
+      "remaining_budget": "453543",
+      "owners_first_name": "dskfljsd",
+      "owners_last_name": "ksdlfjsdkl",
+      "longtitude": "23432",
+      "latitude": "32332"
+    },
+    {
+      "id": 5,
+      "Name": "rollls",
+      "amt_of_cars": "3",
+      "total_budget": "44444",
+      "remaining_budget": "222",
+      "owners_first_name": "amit",
+      "owners_last_name": "pradhan",
+      "longtitude": "2333",
+      "latitude": "333"
+    }
+  ],
+  "cars": [
+    {
+      "id": 1,
+      "Name": "",
+      "amt_of_cars": "",
+      "total_budget": "",
+      "remaining_budget": "",
+      "owners_first_name": "",
+      "owners_last_name": "",
+      "longtitude": "",
+      "latitude": "",
+      "Brand": "volo",
+      "Model": "mmm",
+      "Color": "red",
+      "Price": "dsfsd"
+    },
+    {
+      "id": 2,
+      "Name": "",
+      "amt_of_cars": "",
+      "total_budget": "",
+      "remaining_budget": "",
+      "owners_first_name": "",
+      "owners_last_name": "",
+      "longtitude": "",
+      "latitude": "",
+      "Brand": "11",
+      "Model": "3r",
+      "Color": "red",
+      "Price": "ee"
+    }
+  ],
+  "profile": {
+    "fname": "Amit",
+    "lname": "Pradhan",
+    "email": "hapackcis@gmail.com",
+    "mobile": "08235679151"
+  }
+}

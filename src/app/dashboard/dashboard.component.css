@@ -1,0 +1,11 @@
+.btn{
+    border-radius: 20px;
+
+}
+.d-flex{
+    float: right;
+}
+.input-group{
+    float: left;
+    width: 220px;
+}

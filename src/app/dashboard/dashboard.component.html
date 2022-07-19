@@ -1,0 +1,182 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="input-group rounded">
+        <input type="search" [(ngModel)]="searchValue" class="form-control rounded" placeholder="Search"
+          aria-label="Search" aria-describedby="search-addon" />
+
+      </div>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        class="btn btn-primary d-flex mt-3">Add Dealer</button>
+      <table class="table mt-5">
+        <thead>
+          <tr >
+            <th scope="col">Sr.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Amount Of Cars</th>
+            <th scope="col">Total Budget</th>
+            <th scope="col">Remaining Budget</th>
+            <th scope="col">Owner's First Name</th>
+            <th scope="col">Owner's Last Name</th>
+            <th scope="col">Longtitude</th>
+            <th scope="col">Latitude</th>
+
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of DealerData | searchfilter:searchValue">
+            <td scope="col">{{item.id}}</td>
+            <td scope="col">{{item.Name}}</td>
+            <td scope="col">{{item.amt_of_cars}}</td>
+            <td scope="col">{{item.total_budget | currency}}</td>
+            <td scope="col">{{item.remaining_budget}}</td>
+            <td scope="col">{{item.owners_first_name}}</td>
+            <td scope="col">{{item.owners_last_name}}</td>
+            <td scope="col">{{item.longtitude}}</td>
+            <td scope="col">{{item.latitude}}</td>
+            <td>
+
+
+              <button (click)="onEdit(item)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                class=" btn btn-info ">Edit</button>
+                <button (click)="deleteDealer(item)" class="btn btn-danger mx-1">Delete</button>
+                <button (click)="Move()" class="btn btn-success mx-1">View</button>
+
+
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Details of Dealer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+
+          <div class="row g-3 align-items-center mb-2">
+            <div class="col-md-6">
+              <label for="Name" class="form-label">Name:</label>
+
+            </div>
+
+            <div class="col-md-6">
+              <input type="text" formControlName="Name" class="form-control" placeholder="Enter Name">
+              <div style="color: red;" *ngIf="!formValue.controls.Name?.valid && (formValue.controls.Name?.dirty
+              ||formValue.controls.Name?.touched)">
+                        First Name is not valid
+                      </div>
+            </div>
+     
+          </div>
+
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-md-6">
+              <label for="amt_of_cars" class="form-label">Amount of Cars</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" formControlName="amt_of_cars" class="form-control" placeholder="Enter Amount of Cars">
+              <div style="color: red;" *ngIf="!formValue.controls.amt_of_cars?.valid && (formValue.controls.amt_of_cars?.dirty
+              ||formValue.controls.amt_of_cars?.touched)">
+                        First Name is not valid
+                      </div>
+            </div>
+          </div>
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-md-6">
+              <label for="total_budget" class="form-label">Enter Total Budget</label>
+            </div>
+
+            <div class="col-md-6">
+              <input type="text" formControlName="total_budget" class="form-control" placeholder="Enter Total Budget">
+              <div style="color: red;" *ngIf="!formValue.controls.total_budget?.valid && (formValue.controls.total_budget?.dirty
+              ||formValue.controls.total_budget?.touched)">
+            Enter  Total Budget
+                      </div>
+
+            </div>
+
+          </div>
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-md-6"><label for="remaining_budget" class="form-label">Enter Remaining Budget</label></div>
+            <div class="col-md-6"> <input type="text" formControlName="remaining_budget" class="form-control"
+                placeholder="Enter Remaining Budget">
+                <div style="color: red;" *ngIf="!formValue.controls.remaining_budget?.valid && (formValue.controls.remaining_budget?.dirty
+                ||formValue.controls.remaining_budget?.touched)">
+                Enter Remaining Budget
+                        </div>
+              </div>
+
+          </div>
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-md-6"><label for="owner's_first_name" class="form-label">Owner's First Name</label></div>
+            <div class="col-md-6"><input type="text" formControlName="owners_first_name" class="form-control"
+                placeholder="Enter owners_first_name">
+                <div style="color: red;" *ngIf="!formValue.controls.owners_first_name?.valid && (formValue.controls.owners_first_name?.dirty
+                ||formValue.controls.owners_first_name?.touched)">
+               Enter  owners_first_name
+                        </div>
+              </div>
+
+          </div>
+
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-md-6"> <label for="owner's_last_name" class="form-label">Owner's Last Name</label></div>
+            <div class="col-md-6"> <input type="text" formControlName="owners_last_name" class="form-control"
+                placeholder="Enter owners_last_name"></div>
+                <div style="color: red;" *ngIf="!formValue.controls.owners_last_name?.valid && (formValue.controls.owners_last_name?.dirty
+                ||formValue.controls.owners_last_name?.touched)">
+               Enter  owners_last_name
+                        </div>
+
+          </div>
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-md-6"> <label for="longtitude" class="form-label">Longtitude</label></div>
+            <div class="col-md-6"><input type="text" formControlName="longtitude" class="form-control"
+                placeholder="Enter longtitude">
+
+                <div style="color: red;" *ngIf="!formValue.controls.longtitude?.valid && (formValue.controls.longtitude?.dirty
+                ||formValue.controls.longtitude?.touched)">
+              Enter longtitude
+                        </div>
+            </div>
+
+          </div>
+
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-md-6"> <label for="latitude" class="form-label">Latitude</label></div>
+            <div class="col-md-6"> <input type="text" formControlName="latitude" class="form-control"
+                placeholder="Enter latitude">
+                <div style="color: red;" *ngIf="!formValue.controls.latitude?.valid && (formValue.controls.latitude?.dirty
+                ||formValue.controls.latitude?.touched)">
+                          Enter latitude
+                        </div>
+              </div>
+
+          </div>
+
+
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="postDealerDetails()">Add</button>
+        <button (click)="updateDealeerDetails()" class="btn btn-primary mx-1">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

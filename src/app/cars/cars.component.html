@@ -1,0 +1,129 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="input-group rounded">
+                <input type="search" [(ngModel)]="searchValue" class="form-control rounded" placeholder="Search"
+                    aria-label="Search" aria-describedby="search-addon" />
+
+            </div>
+            <button type="button" class="btn btn-primary d-flex m-3 mx-2" (click)="Move()">Back</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                class="btn btn-primary d-flex mt-3">Add Cars</button>
+
+            <table class="table mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col">Sr.No</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Price</th>
+
+
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of DealerData | searchfilter:searchValue">
+                        <td scope="col">{{item.id}}</td>
+                        <td scope="col">{{item.Brand}}</td>
+                        <td scope="col">{{item.Model}}</td>
+                        <td scope="col">{{item.Color }}</td>
+                        <td scope="col">{{item.Price|currency}}</td>
+
+                        <td>
+
+
+                            <button (click)="onEdit(item)" type="button" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" class=" btn btn-info ">Edit</button>
+                            <button (click)="deleteCar(item)" class="btn btn-danger mx-1">Delete</button>
+
+
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Details of Dealer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+
+                    <div class="row g-3 align-items-center mb-2">
+                        <div class="col-md-6">
+                            <label for="Brand" class="form-label">Brand:</label>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="text" formControlName="Brand" class="form-control" placeholder="Enter Brand">
+                            <div style="color: red;" *ngIf="!formValue.controls.Brand?.valid && (formValue.controls.Brand?.dirty
+                ||formValue.controls.Brand?.touched)">
+                                Brand is not valid
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row g-3 align-items-center mb-3">
+                        <div class="col-md-6">
+                            <label for="Model" class="form-label">Model</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" formControlName="Model" class="form-control" placeholder="Enter Model">
+                            <div style="color: red;" *ngIf="!formValue.controls.Model?.valid && (formValue.controls.Model?.dirty
+                ||formValue.controls.Model?.touched)">
+                                Model is Required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mb-3">
+                        <div class="col-md-6">
+                            <label for="Color" class="form-label">Color</label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="text" formControlName="Color" class="form-control" placeholder="Enter Color">
+                            <div style="color: red;" *ngIf="!formValue.controls.Color?.valid && (formValue.controls.Color?.dirty
+                ||formValue.controls.Color?.touched)">
+                                Enter Color
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row g-3 align-items-center mb-3">
+                        <div class="col-md-6"><label for="Price" class="form-label">Enter Price</label></div>
+                        <div class="col-md-6"> <input type="text" formControlName="Price" class="form-control"
+                                placeholder="Enter Price">
+                            <div style="color: red;" *ngIf="!formValue.controls.Price?.valid && (formValue.controls.Price?.dirty
+                  ||formValue.controls.Price?.touched)">
+                                Enter Price
+                            </div>
+                        </div>
+
+                    </div>
+                   
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="postCarsDetails()">Add</button>
+                <button (click)="updateCarDetails()" class="btn btn-primary mx-1">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
